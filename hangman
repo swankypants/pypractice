@@ -1,0 +1,105 @@
+import random
+
+def set_words():
+    random_words = ['goat', 'chicken', 'meow', 'jazz', 'affix', 'avenue', 'boggle', 'cobweb', 'jelly', 'kayak', 'lymph']
+    return random.choice(random_words)
+
+def game_play():
+    random_words = set_words()
+    letters_guessed = []
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    guesses = 7
+    guessed = False
+    print()
+
+    while not guessed and guesses > 0:
+        print('you have ' + str(guesses) + ' guesses')
+        guess = input('Guess a letter: ')
+
+        if len(guess) == 1:
+            if guess not in alphabet:
+                print('Enter a letter in the alphabet')
+            elif guess in letters_guessed:
+                print('You already picked that letter, go again')
+            elif guess not in random_words:
+                print('WRONG, try again')
+                letters_guessed.append(guess)
+                guesses -= 1
+            elif guess in random_words:
+                print('AWESOME, go again')
+                letters_guessed.append(guess)
+            else:
+                print('check your entry?')
+
+        if len(guess) == len(random_words):
+            if guess == random_words:
+                print('GRATZ, YOU WIN')
+                guessed = True
+            else:
+                print('wrong, guess again')
+                guesses -= 1
+
+        if guesses == 6:
+            print("----------")
+            print("|        |")
+            print("|")
+            print("|")
+            print("|")
+            print("|")
+            print("|")
+        elif guesses == 5:
+            print("----------")
+            print("|        |")
+            print("|        0")
+            print("|")
+            print("|")
+            print("|")
+            print("|")
+
+        elif guesses == 4:
+            print("----------")
+            print("|        |")
+            print("|        0")
+            print("|       /|")
+            print("|")
+            print("|")
+            print("|")
+
+        elif guesses == 3:
+            print("----------")
+            print("|        |")
+            print("|        0")
+            print("|       /|\\")
+            print("|")
+            print("|")
+            print("|")
+
+        elif guesses == 2:
+            print("----------")
+            print("|        |")
+            print("|        0")
+            print("|       /|\\")
+            print("|        |")
+            print("|         ")
+            print("|")
+
+        elif guesses == 1:
+            print("----------")
+            print("|        |")
+            print("|        0")
+            print("|       /|\\")
+            print("|        |")
+            print("|       / ")
+            print("|")
+        else:
+            print('you lose, play again')
+            print("----------")
+            print("|        |")
+            print("|        0")
+            print("|       /|\\")
+            print("|        |")
+            print("|       / \\")
+            print("|")
+
+
+game_play()
