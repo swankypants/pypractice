@@ -1,9 +1,18 @@
 import argparse
 import asyncio
 import aiofiles
+import time
 
+
+async def sleep():
+    await asyncio.sleep(3)
+    return 1
 
 async def catpy():
+	start_time = time.monotonic()
+
+	b = await sleep()
+
 	parser = argparse.ArgumentParser(description='Read a file.')
 
 	parser.add_argument(
@@ -13,7 +22,8 @@ async def catpy():
 
 	args = parser.parse_args()
 	print(f"args: {args.files}")
-	print(f"first element: {args.files[0]}")
+	print('time: ', time.monotonic() - start_time)
+	#print(f"first element: {args.files[0]}")
 
 	for file_name in args.files:
 		async with aiofiles.open(file_name, 'r') as w:
